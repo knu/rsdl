@@ -10,7 +10,7 @@ sdlconfig = with_config('sdl-config', 'sdl-config')
 config = {}
 config['arch']    = Config::CONFIG['arch']
 config['INSTALL'] = Config::CONFIG['INSTALL']
-config['RMALL']   = Config::CONFIG['RMALL']
+config['RMALL']   = Config::CONFIG['RMALL'] || 'rm -fr'
 config['CC']      = Config::CONFIG['CC']
 config['CFLAGS']  = Config::CONFIG['CFLAGS']
 config['CFLAGS']  += " -I\"#{$hdrdir}\"" if $hdrdir
@@ -19,6 +19,7 @@ config['CFLAGS']  += ' ' + `"#{sdlconfig}" --cflags` if sdlconfig and not sdlcon
 config['LDFLAGS'] = Config::CONFIG['LDFLAGS']
 config['LIBS']    = Config::CONFIG['LIBS']
 config['LIBS']    += ' ' + `"#{sdlconfig}" --libs` if sdlconfig and not sdlconfig.empty?
+config['LIBPATH'] = RbConfig::expand(libpathflag)
 config['LIBRUBYARG'] = Config::CONFIG['LIBRUBYARG']
 config['EXEEXT']     = Config::CONFIG['EXEEXT']
 config['bindir'] = Config::CONFIG['bindir']
@@ -29,13 +30,10 @@ headers << '#define HAVE_RUBY_SYSINIT 1'  if have_func('ruby_sysinit')
 headers << '#define HAVE_RUBY_RUN_NODE 1' if have_func('ruby_run_node')
 config['COMMON_HEADERS'] = ([(COMMON_HEADERS || '')]+headers).join("\n")
 
-makefile_in = ERB.new(File.read('Makefile.in'), nil, '%')
-open('Makefile', 'w') do |f|
-  f.print makefile_in.result
-end
-
-rsdl_c_in = ERB.new(File.read('rsdl.c.in'), nil, '%')
-open('rsdl.c', 'w') do |f|
-  f.print rsdl_c_in.result
-end
-
+%w[Makefile rsdl.c].each { |file|
+  file_in = ERB.new(File.read(file + '.in'), nil, '%')
+  message "creating %s\n" % file
+  open(file, 'w') do |f|
+    f.print file_in.result
+  end
+}

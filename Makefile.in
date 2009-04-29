@@ -5,6 +5,7 @@ arch = <%= config['arch'] %>
 CFLAGS = <%= config['CFLAGS'] %>
 LIBS = <%= config['LIBS'] %>
 LDFLAGS = <%= config['LDFLAGS'] %> 
+LIBPATH = <%= config['LIBPATH'] %>
 LIBRUBYARG = <%= config['LIBRUBYARG'] %>
 EXEEXT = <%= config['EXEEXT'] %>
 
@@ -24,5 +25,5 @@ install:
 	<%= config['INSTALL'] %> $(PROGRAM) <%= config['bindir'] %>
 
 $(PROGRAM): $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) $(LIBRUBYARG) $(LIBS) -o $@
+	$(CC) $(OBJS) $(LIBPATH) $(LDFLAGS) $(LIBRUBYARG) $(LIBS) -o $@
 
