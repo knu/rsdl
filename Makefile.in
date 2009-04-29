@@ -1,0 +1,28 @@
+
+CC = <%= config['CC'] %>
+
+arch = <%= config['arch'] %>
+CFLAGS = <%= config['CFLAGS'] %>
+LIBS = <%= config['LIBS'] %>
+LDFLAGS = <%= config['LDFLAGS'] %> 
+LIBRUBYARG = <%= config['LIBRUBYARG'] %>
+EXEEXT = <%= config['EXEEXT'] %>
+
+PROGRAM = <%= config['RSDL'] %>$(EXEEXT)
+
+OBJS = rsdl.o
+
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+all: $(PROGRAM)
+
+clean:
+	<%= config['RMALL'] %> $(PROGRAM) $(OBJS)
+
+install:
+	<%= config['INSTALL'] %> $(PROGRAM) <%= config['bindir'] %>
+
+$(PROGRAM): $(OBJS)
+	$(CC) $(OBJS) $(LDFLAGS) $(LIBRUBYARG) $(LIBS) -o $@
+

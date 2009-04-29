@@ -1,0 +1,37 @@
+
+#include <ruby.h>
+<%= config['COMMON_HEADERS'] %>
+#include <SDL.h>
+#include "SDL_main.h"
+#ifdef HAVE_LOCALE_H
+#include <locale.h>
+#endif
+
+#ifdef RUBY_GLOBAL_SETUP
+RUBY_GLOBAL_SETUP
+#endif
+
+int main(int argc, char **argv)
+{
+#ifdef HAVE_LOCALE_H
+  setlocale(LC_CTYPE, "");
+#endif
+
+#ifdef HAVE_RUBY_SYSINIT
+  ruby_sysinit(&argc, &argv);
+#endif
+  {
+#ifdef RUBY_INIT_STACK
+    RUBY_INIT_STACK;
+#endif
+    ruby_init();
+#ifdef HAVE_RUBY_RUN_NODE
+    return ruby_run_node(ruby_options(argc, argv));
+#else
+    ruby_options(argc, argv);
+    ruby_run(); //no return
+    return 0;
+#endif
+  }
+}
+

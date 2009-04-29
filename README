@@ -1,0 +1,21 @@
+rsdl - SDL initialized ruby
+
+REQUIREMENTS:
+- ruby 1.8 or later
+- libsdl
+
+INSTALL:
+  $ruby configure.rb
+  $make
+  $sudo make install
+
+USAGE:
+Run your script with rsdl instead of ruby.
+  $rsdl myscript.rb
+
+LICENSE:
+ruby's.
+
+Copyright 2009 Ryuichi Sakamoto.
+mail: kumaryu __at__ kumaryu.net
+
