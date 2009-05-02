@@ -5,7 +5,7 @@ arch = <%= config['arch'] %>
 CFLAGS = <%= config['CFLAGS'] %>
 LIBS = <%= config['LIBS'] %>
 LDFLAGS = <%= config['LDFLAGS'] %> 
-LIBPATH = <%= config['LIBPATH'] %>
+LIBPATH = <%= config['LIBPATH'] %> 
 LIBRUBYARG = <%= config['LIBRUBYARG'] %>
 EXEEXT = <%= config['EXEEXT'] %>
 
