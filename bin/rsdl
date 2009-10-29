@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+exec File.join(File.dirname(__FILE__), "..", "rsdl"), *ARGV
+
+# This file is a dummy place-holder to satisfy RubyGems.
+#
+# This file is never used because the wrapper script generated in the
+# generate_bin stage will be overwritten in the build_extensions
+# stage.

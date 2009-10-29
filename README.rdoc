@@ -8,6 +8,10 @@ rsdl - SDL initialized ruby interpreter
 
 == Installation
 
+  gem install rsdl
+
+    or
+
   ruby extconf.rb
   make
   sudo make install
@@ -28,6 +32,6 @@ rsdl - SDL initialized ruby interpreter
   Copyright (C) 2009 Ryuichi Sakamoto
   mail: kumaryu __at__ kumaryu.net
 
-  Modified by:
+  Modified and packaged by:
   Copyright (C) 2009 Akinori MUSHA
   mail: knu __at__ idaemons.org
