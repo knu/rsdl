@@ -8,7 +8,7 @@ rsdl - SDL initialized ruby interpreter
 
 == Installation
 
-  ruby configure.rb
+  ruby extconf.rb
   make
   sudo make install
 
