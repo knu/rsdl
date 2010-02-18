@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{rsdl}
-  s.version = "0.1.3"
+  s.version = "0.1.4"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ryuichi Sakamoto", "Akinori MUSHA"]
-  s.date = %q{2009-12-08}
+  s.date = %q{2010-02-18}
   s.default_executable = %q{rsdl}
   s.description = %q{RSDL is an SDL initialized ruby interpreter which makes SDL
 applications possible to run on such platforms as Mac OS X where SDL
@@ -30,6 +30,7 @@ needs to be initialized before a ruby interpreter is invoked.
      "bin/rsdl",
      "extconf.rb",
      "rsdl.c.in",
+     "rsdl.gemspec",
      "test/helper.rb",
      "test/test_rsdl.rb"
   ]
