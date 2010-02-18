@@ -22,7 +22,11 @@ clean:
 	<%= config['RMALL'] %> $(PROGRAM) $(OBJS)
 
 install:
-	if ! [ "$$(basename "$$(cd .. && pwd)")" = gems -a -d ../../specifications ]; then \
+	if [ "$$(basename "$$(cd .. && pwd)")" = gems -a -d ../../specifications ]; then \
+	    if [ "$(PROGRAM)" != rsdl$(EXEEXT) ]; then \
+	        ln "$(PROGRAM)" rsdl$(EXEEXT); \
+	    fi; \
+	else \
 	    <%= config['INSTALL'] %> $(PROGRAM) <%= config['bindir'] %>; \
 	fi
 
