@@ -8,6 +8,7 @@ dir_config('sdl') #--with-sdl-dir, --with-sdl-include, or --with-sdl-lib
 sdlconfig = with_config('sdl-config', 'sdl-config')
 
 config = {}
+Config = RbConfig unless defined?(Config)
 config['arch']    = Config::CONFIG['arch']
 config['INSTALL'] = Config::CONFIG['INSTALL']
 config['RMALL']   = Config::CONFIG['RMALL'] || 'rm -fr'
