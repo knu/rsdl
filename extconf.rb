@@ -8,22 +8,22 @@ dir_config('sdl') #--with-sdl-dir, --with-sdl-include, or --with-sdl-lib
 sdlconfig = with_config('sdl-config', 'sdl-config')
 
 config = {}
-config['arch']    = Config::CONFIG['arch']
-config['INSTALL'] = Config::CONFIG['INSTALL']
-config['RMALL']   = Config::CONFIG['RMALL'] || 'rm -fr'
-config['CC']      = Config::CONFIG['CC']
-config['CFLAGS']  = Config::CONFIG['CFLAGS']
+config['arch']    = RbConfig::CONFIG['arch']
+config['INSTALL'] = RbConfig::CONFIG['INSTALL']
+config['RMALL']   = RbConfig::CONFIG['RMALL'] || 'rm -fr'
+config['CC']      = RbConfig::CONFIG['CC']
+config['CFLAGS']  = RbConfig::CONFIG['CFLAGS']
 config['CFLAGS']  += " -I\"#{$hdrdir}\"" if $hdrdir
 config['CFLAGS']  += " -I\"#{$arch_hdrdir}\"" if $arch_hdrdir
 config['CFLAGS']  += ' ' + `"#{sdlconfig}" --cflags` if sdlconfig and not sdlconfig.empty?
-config['LDFLAGS'] = Config::CONFIG['LDFLAGS']
-config['LIBS']    = Config::CONFIG['LIBS']
+config['LDFLAGS'] = RbConfig::CONFIG['LDFLAGS']
+config['LIBS']    = RbConfig::CONFIG['LIBS']
 config['LIBS']    += ' ' + `"#{sdlconfig}" --libs` if sdlconfig and not sdlconfig.empty?
 config['LIBPATH'] = RbConfig::expand(libpathflag)
-config['LIBRUBYARG'] = Config::CONFIG['LIBRUBYARG']
-config['EXEEXT']     = Config::CONFIG['EXEEXT']
-config['bindir'] = Config::CONFIG['bindir']
-config['RSDL']   = Config::CONFIG['RUBY_INSTALL_NAME'].sub(/ruby/, 'rsdl')
+config['LIBRUBYARG'] = RbConfig::CONFIG['LIBRUBYARG']
+config['EXEEXT']     = RbConfig::CONFIG['EXEEXT']
+config['bindir'] = RbConfig::CONFIG['bindir']
+config['RSDL']   = RbConfig::CONFIG['RUBY_INSTALL_NAME'].sub(/ruby/, 'rsdl')
 
 headers = []
 headers << '#define HAVE_RUBY_SYSINIT 1'  if have_func('ruby_sysinit')
