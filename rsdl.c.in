@@ -1,8 +1,8 @@
 
 #include <ruby.h>
 <%= config['COMMON_HEADERS'] %>
-#include <SDL.h>
-#include "SDL_main.h"
+#include <SDL2/SDL.h>
+#include "SDL2/SDL_main.h"
 #ifdef HAVE_LOCALE_H
 #include <locale.h>
 #endif
