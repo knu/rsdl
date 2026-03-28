@@ -31,10 +31,10 @@ headers << '#define HAVE_RUBY_RUN_NODE 1' if have_func('ruby_run_node')
 config['COMMON_HEADERS'] = ([(COMMON_HEADERS || '')]+headers).join("\n")
 
 %w[Makefile rsdl.c].each { |file|
-  file_in = ERB.new(File.read(file + '.in'), nil, '%')
+  file_in = ERB.new(File.read(file + '.in'), trim_mode: '%')
   message "creating %s\n" % file
-  open(file, 'w') do |f|
-    f.print file_in.result
+  File.open(file, 'w') do |f|
+    f.print file_in.result(binding)
   end
 }
 
